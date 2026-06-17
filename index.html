@@ -241,7 +241,20 @@ input[type=email]:focus,input[type=password]:focus{border-color:var(--green)}
 <body>
 <div id="app">
 
-<div id="screen-auth" class="screen active">
+<div id="screen-splash" class="screen active">
+  <div class="top-bar"><div class="top-bar-titles"><h1><span class="ball">⚽</span>MFA</h1><div class="subtitle">MALEGAON FOOTBALL ASSOCIATION</div></div></div>
+  <div class="scroll-area" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100%">
+    <div class="mfa-hero">
+      <div class="mfa-ball">⚽</div>
+      <div class="mfa-title">MFA</div>
+      <div class="mfa-sub">Malegaon Football Association</div>
+      <div class="pitch-strip"></div>
+    </div>
+    <div style="font-size:13px;color:var(--text2)">Loading…</div>
+  </div>
+</div>
+
+<div id="screen-auth" class="screen">
   <div class="top-bar"><div class="top-bar-titles"><h1><span class="ball">⚽</span>MFA</h1><div class="subtitle">MALEGAON FOOTBALL ASSOCIATION</div></div></div>
   <div class="scroll-area" style="display:flex;flex-direction:column;justify-content:center;min-height:100%">
     <div class="mfa-hero">
@@ -707,8 +720,9 @@ async function authSubmit() {
       var res = await supabase.auth.signUp({ email: email, password: password, options: { data: { full_name: name, display_name: name.split(' ')[0] } } });
       if (res.error) throw res.error;
       var uid = res.data.user.id;
-      await supabase.from('profiles').insert({ id: uid, full_name: name, display_name: name.split(' ')[0] });
-      await supabase.from('player_stats').insert({ id: uid, display_name: name.split(' ')[0] });
+      // Profile/stats rows may already exist from a previous attempt — ignore duplicate errors.
+      try { await supabase.from('profiles').insert({ id: uid, full_name: name, display_name: name.split(' ')[0] }); } catch(e) {}
+      try { await supabase.from('player_stats').insert({ id: uid, display_name: name.split(' ')[0] }); } catch(e) {}
       currentUser = res.data.user;
       currentUser.display_name = name.split(' ')[0];
       currentUser.full_name = name;
@@ -722,7 +736,19 @@ async function authSubmit() {
       onAuthSuccess();
     }
   } catch(e) {
-    showAuthError(e.message || 'Something went wrong. Please try again.');
+    var msg = e.message || '';
+    if (/already registered|user_already_exists/i.test(msg)) {
+      showAuthError('This email is already registered. Switch to Log in below.');
+      if (authMode === 'signup') {
+        authMode = 'login';
+        document.getElementById('auth-signup-name').style.display = 'none';
+        document.getElementById('auth-toggle-text').innerHTML = 'Don\'t have an account? <span onclick="toggleAuthMode()">Sign up</span>';
+      }
+    } else if (/invalid login credentials/i.test(msg)) {
+      showAuthError('Wrong email or password. Try again.');
+    } else {
+      showAuthError(msg || 'Something went wrong. Please try again.');
+    }
     btn.textContent = authMode === 'signup' ? 'Create Account' : 'Log In';
     btn.disabled = false;
   }
@@ -877,25 +903,31 @@ function navigate(screen) {
 }
 
 async function init() {
-  var session = await supabase.auth.getSession();
-  if (session.data && session.data.session && session.data.session.user) {
-    currentUser = session.data.session.user;
-    var profile = await supabase.from('profiles').select('*').eq('id', currentUser.id).single();
-    if (profile.data) { currentUser.display_name = profile.data.display_name; currentUser.full_name = profile.data.full_name; }
-    var hasState = loadState();
-    if (hasState && state.phase !== 'setup') {
-      var rd = document.getElementById('resume-detail');
-      var total = state.fixtures.length;
-      var done = state.fixtures.filter(function(f){ return f.completed; }).length;
-      rd.innerHTML = state.teams.map(function(t){ return t.name; }).join(' &bull; ') + '<br>' + done + ' of ' + total + ' matches played';
-      document.getElementById('resume-section').style.display = 'block';
-      document.getElementById('fresh-start').style.display = 'none';
-    } else {
-      document.getElementById('resume-section').style.display = 'none';
-      document.getElementById('fresh-start').style.display = 'block';
+  try {
+    var session = await supabase.auth.getSession();
+    if (session.data && session.data.session && session.data.session.user) {
+      currentUser = session.data.session.user;
+      try {
+        var profile = await supabase.from('profiles').select('*').eq('id', currentUser.id).single();
+        if (profile.data) { currentUser.display_name = profile.data.display_name; currentUser.full_name = profile.data.full_name; }
+      } catch(e) { /* profile fetch failed — continue with session data */ }
+      var hasState = loadState();
+      if (hasState && state.phase !== 'setup') {
+        var rd = document.getElementById('resume-detail');
+        var total = state.fixtures.length;
+        var done = state.fixtures.filter(function(f){ return f.completed; }).length;
+        rd.innerHTML = state.teams.map(function(t){ return t.name; }).join(' &bull; ') + '<br>' + done + ' of ' + total + ' matches played';
+        document.getElementById('resume-section').style.display = 'block';
+        document.getElementById('fresh-start').style.display = 'none';
+      } else {
+        document.getElementById('resume-section').style.display = 'none';
+        document.getElementById('fresh-start').style.display = 'block';
+      }
+      navigate('welcome');
+      return;
     }
-    navigate('welcome');
-    return;
+  } catch(e) {
+    console.error('Init error', e);
   }
   document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
   document.getElementById('screen-auth').classList.add('active');
