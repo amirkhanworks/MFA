@@ -33,6 +33,26 @@ body{height:100%;height:100dvh;overflow:hidden;background:var(--bg);color:var(--
 .mfa-credit{text-align:center;font-size:11px;color:var(--text2);line-height:1.7;margin-top:24px}
 .mfa-credit a{color:var(--green);text-decoration:none;font-weight:600}
 .mfa-credit a:hover{text-decoration:underline}
+.mode-card{background:var(--surface);border:2px solid #2a2a2a;border-radius:var(--radius);padding:20px 16px;margin-bottom:12px;cursor:pointer;transition:border-color .15s,transform .1s;display:flex;align-items:center;gap:16px;min-height:80px}
+.mode-card:active{transform:scale(0.98)}
+.mode-card:hover{border-color:var(--green)}
+.mode-card-icon{font-size:28px;flex-shrink:0}
+.mode-card-text{}
+.mode-card-title{font-size:16px;font-weight:700;margin-bottom:4px}
+.mode-card-sub{font-size:12px;color:var(--text2);line-height:1.4}
+.player-select-card{background:var(--surface);border:1.5px solid #333;border-radius:var(--radius-sm);padding:12px 14px;font-size:14px;font-weight:600;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;gap:10px;min-height:56px;user-select:none}
+.player-select-card:active{transform:scale(0.97)}
+.player-select-card.selected{border-color:var(--green);background:rgba(0,200,83,.08)}
+.player-select-card .ps-check{width:20px;height:20px;border-radius:50%;border:2px solid #444;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s,border-color .15s;font-size:11px}
+.player-select-card.selected .ps-check{background:var(--green);border-color:var(--green);color:#000}
+.player-select-card .ps-name{flex:1}
+.player-select-card .ps-badge{font-size:10px;color:var(--green);background:rgba(0,200,83,.12);padding:2px 6px;border-radius:10px;flex-shrink:0}
+.select-count-bar{background:var(--surface);padding:10px 16px;border-bottom:1px solid #2a2a2a;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.select-count-text{font-size:13px;font-weight:700}
+.manual-add-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid #2a2a2a}
+.manual-add-row input{flex:1;height:48px}
+.btn-add-manual{background:var(--green);color:#000;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:700;padding:0 16px;height:48px;cursor:pointer;flex-shrink:0;white-space:nowrap}
+.player-select-grid{display:flex;flex-direction:column;gap:8px;padding:12px 16px}
 .top-bar .subtitle{font-size:11px;color:var(--text2);letter-spacing:.05em;margin-top:1px}
 .top-bar-titles{display:flex;flex-direction:column}
 .back-btn{background:none;border:none;color:var(--text2);font-size:14px;cursor:pointer;padding:8px;display:flex;align-items:center;gap:4px;min-height:44px}
@@ -184,7 +204,7 @@ tbody td:first-child{text-align:left;padding-left:8px}
 .goal-sheet-title{font-size:11px;font-weight:700;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
 .goal-sheet-sub{font-size:18px;font-weight:800;margin-bottom:16px}
 .goal-player-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-height:300px;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.goal-player-btn{background:var(--surface2);border:1px solid #333;border-radius:var(--radius-sm);padding:12px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;min-height:52px;text-align:center;transition:border-color .15s,transform .1s}
+.goal-player-btn{background:var(--surface2);border:1px solid #333;border-radius:var(--radius-sm);padding:12px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;min-height:60px;text-align:center;transition:border-color .15s,transform .1s;line-height:1.5}
 .goal-player-btn:active{transform:scale(0.95)}
 .goal-player-btn:hover{border-color:var(--green)}
 .goal-player-btn.og{color:var(--warn);border-color:rgba(255,171,64,.4)}
@@ -205,10 +225,78 @@ tbody td:first-child{text-align:left;padding-left:8px}
 .scorer-name{flex:1;font-size:14px;font-weight:600}
 .scorer-team{font-size:11px;color:var(--text2)}
 .scorer-goals{font-size:16px;font-weight:800;color:var(--green);min-width:24px;text-align:right}
+input[type=email],input[type=password]{background:var(--surface2);border:1px solid #333;border-radius:var(--radius-sm);color:var(--text);font-size:16px;padding:0 14px;height:52px;width:100%;outline:none;transition:border-color .15s;-webkit-appearance:none}
+input[type=email]:focus,input[type=password]:focus{border-color:var(--green)}
+.auth-toggle{text-align:center;font-size:13px;color:var(--text2);margin-top:12px}
+.auth-toggle span{color:var(--green);font-weight:700;cursor:pointer}
+.auth-error{background:rgba(255,82,82,.12);border:1px solid rgba(255,82,82,.3);border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--danger);margin-bottom:12px;display:none}
+.profile-stat{background:var(--surface);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.profile-stat-val{font-size:28px;font-weight:800;color:var(--green)}
+.profile-stat-label{font-size:11px;color:var(--text2);text-align:center}
+.profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.profile-name{font-size:22px;font-weight:800;margin-bottom:4px}
+.profile-email{font-size:13px;color:var(--text2);margin-bottom:20px}
 </style>
 </head>
 <body>
 <div id="app">
+
+<div id="screen-auth" class="screen active">
+  <div class="top-bar"><div class="top-bar-titles"><h1><span class="ball">⚽</span>MFA</h1><div class="subtitle">MALEGAON FOOTBALL ASSOCIATION</div></div></div>
+  <div class="scroll-area" style="display:flex;flex-direction:column;justify-content:center;min-height:100%">
+    <div class="mfa-hero">
+      <div class="mfa-ball">⚽</div>
+      <div class="mfa-title">MFA</div>
+      <div class="mfa-sub">Malegaon Football Association</div>
+      <div class="pitch-strip"></div>
+    </div>
+    <div id="auth-error" class="auth-error"></div>
+    <div id="auth-signup-name" style="margin-bottom:12px;display:none">
+      <label>Your name</label>
+      <input type="text" id="inp-auth-name" placeholder="e.g. Amir Khan" maxlength="40">
+    </div>
+    <div style="margin-bottom:12px">
+      <label>Email</label>
+      <input type="email" id="inp-auth-email" placeholder="your@email.com" inputmode="email">
+    </div>
+    <div style="margin-bottom:20px">
+      <label>Password</label>
+      <input type="password" id="inp-auth-password" placeholder="Min. 6 characters">
+    </div>
+    <button class="btn btn-primary" id="btn-auth-submit" onclick="authSubmit()">Log In</button>
+    <div class="auth-toggle" id="auth-toggle-text">Don't have an account? <span onclick="toggleAuthMode()">Sign up</span></div>
+    <div class="mfa-credit" style="margin-top:32px">
+      Exclusively built for MFA.<br>
+      Made by Amir — WhatsApp <a href="https://wa.me/918446244214" target="_blank" rel="noopener">+91 84462 44214</a>
+    </div>
+  </div>
+</div>
+
+<div id="screen-profile" class="screen">
+  <div class="top-bar"><div class="top-bar-titles"><h1><span class="ball">⚽</span>MFA</h1><div class="subtitle">MY PROFILE</div></div></div>
+  <div class="scroll-area">
+    <div style="padding:8px 0 4px">
+      <div class="profile-name" id="profile-display-name">—</div>
+      <div class="profile-email" id="profile-email">—</div>
+    </div>
+    <div class="section-title">Career Stats</div>
+    <div class="profile-grid">
+      <div class="profile-stat"><div class="profile-stat-val" id="stat-goals">0</div><div class="profile-stat-label">Goals</div></div>
+      <div class="profile-stat"><div class="profile-stat-val" id="stat-tournaments">0</div><div class="profile-stat-label">Tournaments</div></div>
+      <div class="profile-stat"><div class="profile-stat-val" id="stat-wins">0</div><div class="profile-stat-label">Wins</div></div>
+      <div class="profile-stat"><div class="profile-stat-val" id="stat-draws">0</div><div class="profile-stat-label">Draws</div></div>
+      <div class="profile-stat"><div class="profile-stat-val" id="stat-losses">0</div><div class="profile-stat-label">Losses</div></div>
+      <div class="profile-stat"><div class="profile-stat-val" id="stat-og">0</div><div class="profile-stat-label">Own Goals</div></div>
+    </div>
+    <div class="section-title">Account</div>
+    <button class="btn btn-danger btn-sm" onclick="signOut()">Sign Out</button>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-btn" onclick="navigate('welcome')" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+    <button class="nav-btn" onclick="navigate('fixtures')" aria-label="Fixtures"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Fixtures</button>
+    <button class="nav-btn active" aria-label="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</button>
+  </div>
+</div>
 
 <div id="screen-welcome" class="screen">
   <div class="top-bar"><div class="top-bar-titles"><h1><span class="ball">⚽</span>MFA</h1><div class="subtitle">MALEGAON FOOTBALL ASSOCIATION</div></div></div>
@@ -291,20 +379,43 @@ tbody td:first-child{text-align:left;padding-left:8px}
       <div id="player-fields"></div>
       <div class="sticky-btn" style="display:flex;flex-direction:column;gap:10px">
         <button class="btn btn-primary" onclick="setupFinish()" id="btn-step3">Start Draft</button>
+        <button class="btn btn-secondary btn-sm" onclick="setupBackToMode()">← Back</button>
+      </div>
+    </div>
+
+    <div id="setup-step-mode" style="display:none">
+      <div class="section-title">How would you like to add players?</div>
+      <div class="mode-card" onclick="chooseModeRegistered()">
+        <div class="mode-card-icon">👥</div>
+        <div class="mode-card-text">
+          <div class="mode-card-title">Select from MFA players</div>
+          <div class="mode-card-sub">Pick from everyone registered on the platform. Profiles are linked automatically.</div>
+        </div>
+      </div>
+      <div class="mode-card" onclick="chooseModeManual()">
+        <div class="mode-card-icon">✏️</div>
+        <div class="mode-card-text">
+          <div class="mode-card-title">Enter manually</div>
+          <div class="mode-card-sub">Type player names yourself. Use this if players haven't registered yet.</div>
+        </div>
+      </div>
+      <div class="sticky-btn">
         <button class="btn btn-secondary btn-sm" onclick="setupBackTo2()">← Back to Captain Names</button>
       </div>
+    </div>
+
+    <div id="setup-step-registered" style="display:none">
     </div>
   </div>
 </div>
 
 <div id="screen-draft" class="screen">
-  <div class="top-bar"><div class="top-bar-titles"><h1><span class="ball">⚽</span>MFA</h1><div class="subtitle">CAPTAIN DRAFT</div></div></div>
+  <div class="top-bar"><div class="top-bar-titles"><h1><span class="ball">⚽</span>MFA</h1><div class="subtitle">TEAM ALLOCATION</div></div></div>
   <div class="draft-header">
-    <div class="pick-indicator" id="draft-pick-label">Pick for</div>
-    <div class="pick-team" id="draft-pick-team">—</div>
-    <div class="pick-round" id="draft-pick-round"></div>
+    <div class="pick-indicator" id="draft-pick-label">Tap a player to assign them to a team</div>
+    <div class="pick-team" id="draft-pick-team" style="font-size:14px;color:var(--text2);font-weight:600">⚽ Players in pool: <span id="draft-pool-count">0</span></div>
   </div>
-  <div id="draft-complete-banner" class="draft-complete-banner" style="display:none">⚽ Draft complete — all players assigned</div>
+  <div id="draft-complete-banner" class="draft-complete-banner" style="display:none">⚽ All players assigned</div>
   <div style="flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;">
     <div id="uneven-note" class="uneven-note" style="display:none;margin-top:12px"></div>
     <div class="player-pool" id="player-pool"></div>
@@ -323,7 +434,7 @@ tbody td:first-child{text-align:left;padding-left:8px}
     <div class="live-banner-time" id="lbs-time-f">--:--</div>
   </div>
   <div class="scroll-area" id="fixtures-list"></div>
-  <div class="bottom-nav" id="nav-fixtures"><button class="nav-btn" onclick="navigate('setup')" id="navbtn-setup" aria-label="Setup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Setup</button><button class="nav-btn active" id="navbtn-fixtures" aria-label="Fixtures"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Fixtures</button><button class="nav-btn" id="navbtn-table" onclick="navigate('table')" aria-label="Table"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>Table</button></div>
+  <div class="bottom-nav" id="nav-fixtures"><button class="nav-btn" onclick="navigate('setup')" id="navbtn-setup" aria-label="Setup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Setup</button><button class="nav-btn active" id="navbtn-fixtures" aria-label="Fixtures"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Fixtures</button><button class="nav-btn" id="navbtn-table" onclick="navigate('table')" aria-label="Table"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>Table</button><button class="nav-btn" onclick="navigate('profile')" aria-label="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</button></div>
 </div>
 
 <div id="screen-match" class="screen">
@@ -468,6 +579,242 @@ tbody td:first-child{text-align:left;padding-left:8px}
 </div>
 
 <script>
+var SUPA_URL = 'https://lthnbdtoacwjofllerev.supabase.co';
+var SUPA_KEY = 'sb_publishable_YT7lLd-SWaBaj_fxd94KNw_GVLSjcpk';
+var SUPA_STORE_KEY = 'sb-lthnbdtoacwjofllerev-auth-token';
+var currentUser = null;
+var authMode = 'login';
+var _session = null;
+
+var supabase = (function() {
+  function _getSession() {
+    try { var s = localStorage.getItem(SUPA_STORE_KEY); return s ? JSON.parse(s) : null; } catch(e) { return null; }
+  }
+  function _saveSession(s) { try { localStorage.setItem(SUPA_STORE_KEY, JSON.stringify(s)); } catch(e) {} }
+  function _clearSession() { try { localStorage.removeItem(SUPA_STORE_KEY); } catch(e) {} }
+  function _token() { var s = _session || _getSession(); return s && s.access_token ? s.access_token : null; }
+  function _headers(auth) {
+    var h = { 'Content-Type': 'application/json', 'apikey': SUPA_KEY };
+    if (auth) { var t = _token(); if (t) h['Authorization'] = 'Bearer ' + t; }
+    return h;
+  }
+  var auth = {
+    signUp: async function(opts) {
+      var r = await fetch(SUPA_URL + '/auth/v1/signup', { method: 'POST', headers: _headers(false), body: JSON.stringify({ email: opts.email, password: opts.password, data: opts.options && opts.options.data ? opts.options.data : {} }) });
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error_description || d.msg || d.message || 'Sign up failed');
+      if (d.access_token) { _session = d; _saveSession(d); }
+      return { data: { user: d.user || d }, error: null };
+    },
+    signInWithPassword: async function(opts) {
+      var r = await fetch(SUPA_URL + '/auth/v1/token?grant_type=password', { method: 'POST', headers: _headers(false), body: JSON.stringify({ email: opts.email, password: opts.password }) });
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error_description || d.message || 'Login failed');
+      _session = d; _saveSession(d);
+      return { data: { user: d.user, session: d }, error: null };
+    },
+    signOut: async function() {
+      try { await fetch(SUPA_URL + '/auth/v1/logout', { method: 'POST', headers: _headers(true) }); } catch(e) {}
+      _session = null; _clearSession();
+    },
+    getSession: async function() {
+      var s = _getSession();
+      if (s && s.access_token) { _session = s; return { data: { session: s }, error: null }; }
+      return { data: { session: null }, error: null };
+    }
+  };
+  async function rpc(fn, params) {
+    var r = await fetch(SUPA_URL + '/rest/v1/rpc/' + fn, { method: 'POST', headers: _headers(true), body: JSON.stringify(params || {}) });
+    var d = null; try { d = await r.json(); } catch(e) {}
+    return r.ok ? { data: d, error: null } : { data: null, error: d };
+  }
+  function from(table) {
+    return {
+      insert: async function(row) {
+        var r = await fetch(SUPA_URL + '/rest/v1/' + table, { method: 'POST', headers: Object.assign({}, _headers(true), { 'Prefer': 'return=representation' }), body: JSON.stringify(row) });
+        var d = await r.json();
+        if (!r.ok) return { data: null, error: d };
+        return { data: Array.isArray(d) ? d[0] : d, error: null };
+      },
+      select: function(cols) {
+        var _filters = [];
+        var q = {
+          eq: function(c, v) { _filters.push(c + '=eq.' + encodeURIComponent(v)); return q; },
+          single: async function() {
+            var qs = 'select=' + (cols || '*') + (_filters.length ? '&' + _filters.join('&') : '');
+            var r = await fetch(SUPA_URL + '/rest/v1/' + table + '?' + qs, { headers: Object.assign({}, _headers(true), { 'Accept': 'application/vnd.pgrst.object+json' }) });
+            var d = await r.json();
+            if (!r.ok) return { data: null, error: d };
+            return { data: d, error: null };
+          },
+          // Makes `await supabase.from(t).select(c)` resolve to { data: [...], error } for list queries.
+          then: function(resolve, reject) {
+            var qs = 'select=' + (cols || '*') + (_filters.length ? '&' + _filters.join('&') : '');
+            return fetch(SUPA_URL + '/rest/v1/' + table + '?' + qs, { headers: _headers(true) })
+              .then(function(r) {
+                return r.json().then(function(d) {
+                  return r.ok ? { data: d, error: null } : { data: null, error: d };
+                });
+              })
+              .then(resolve, reject);
+          }
+        };
+        return q;
+      },
+      update: async function(row) {
+        var _filters = [];
+        var q = { eq: async function(c, v) {
+          var qs = c + '=eq.' + encodeURIComponent(v);
+          var r = await fetch(SUPA_URL + '/rest/v1/' + table + '?' + qs, { method: 'PATCH', headers: Object.assign({}, _headers(true), { 'Prefer': 'return=representation' }), body: JSON.stringify(row) });
+          var d = await r.json();
+          return { data: d, error: r.ok ? null : d };
+        }};
+        return q;
+      }
+    };
+  }
+  return { auth: auth, from: from, rpc: rpc };
+})();
+
+function initSupabase() {}
+
+function toggleAuthMode() {
+  authMode = authMode === 'login' ? 'signup' : 'login';
+  document.getElementById('auth-signup-name').style.display = authMode === 'signup' ? 'block' : 'none';
+  document.getElementById('btn-auth-submit').textContent = authMode === 'signup' ? 'Create Account' : 'Log In';
+  document.getElementById('auth-toggle-text').innerHTML = authMode === 'signup' ? 'Already have an account? <span onclick="toggleAuthMode()">Log in</span>' : 'Don\'t have an account? <span onclick="toggleAuthMode()">Sign up</span>';
+  document.getElementById('auth-error').style.display = 'none';
+}
+
+function showAuthError(msg) {
+  var el = document.getElementById('auth-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+async function authSubmit() {
+  var email = document.getElementById('inp-auth-email').value.trim();
+  var password = document.getElementById('inp-auth-password').value;
+  var btn = document.getElementById('btn-auth-submit');
+  document.getElementById('auth-error').style.display = 'none';
+  if (!email || !password) { showAuthError('Please enter your email and password.'); return; }
+  if (password.length < 6) { showAuthError('Password must be at least 6 characters.'); return; }
+  btn.textContent = '...'; btn.disabled = true;
+  try {
+    if (authMode === 'signup') {
+      var name = document.getElementById('inp-auth-name').value.trim();
+      if (!name) { showAuthError('Please enter your name.'); btn.textContent = 'Create Account'; btn.disabled = false; return; }
+      var res = await supabase.auth.signUp({ email: email, password: password, options: { data: { full_name: name, display_name: name.split(' ')[0] } } });
+      if (res.error) throw res.error;
+      var uid = res.data.user.id;
+      await supabase.from('profiles').insert({ id: uid, full_name: name, display_name: name.split(' ')[0] });
+      await supabase.from('player_stats').insert({ id: uid, display_name: name.split(' ')[0] });
+      currentUser = res.data.user;
+      currentUser.display_name = name.split(' ')[0];
+      currentUser.full_name = name;
+      onAuthSuccess();
+    } else {
+      var res = await supabase.auth.signInWithPassword({ email: email, password: password });
+      if (res.error) throw res.error;
+      currentUser = res.data.user;
+      var profile = await supabase.from('profiles').select('*').eq('id', currentUser.id).single();
+      if (profile.data) { currentUser.display_name = profile.data.display_name; currentUser.full_name = profile.data.full_name; }
+      onAuthSuccess();
+    }
+  } catch(e) {
+    showAuthError(e.message || 'Something went wrong. Please try again.');
+    btn.textContent = authMode === 'signup' ? 'Create Account' : 'Log In';
+    btn.disabled = false;
+  }
+}
+
+function onAuthSuccess() {
+  navigate('welcome');
+}
+
+async function signOut() {
+  if (supabase) await supabase.auth.signOut();
+  currentUser = null;
+  navigate('auth');
+}
+
+async function loadProfile() {
+  if (!currentUser) return;
+  document.getElementById('profile-display-name').textContent = currentUser.full_name || currentUser.display_name || 'Player';
+  document.getElementById('profile-email').textContent = currentUser.email || '';
+  var res = await supabase.from('player_stats').select('*').eq('id', currentUser.id).single();
+  if (res.data) {
+    document.getElementById('stat-goals').textContent = res.data.goals_scored || 0;
+    document.getElementById('stat-tournaments').textContent = res.data.tournaments_played || 0;
+    document.getElementById('stat-wins').textContent = res.data.wins || 0;
+    document.getElementById('stat-draws').textContent = res.data.draws || 0;
+    document.getElementById('stat-losses').textContent = res.data.losses || 0;
+    document.getElementById('stat-og').textContent = res.data.own_goals || 0;
+  }
+}
+
+async function saveTournamentToSupabase() {
+  if (!supabase || !currentUser) return null;
+  try {
+    var res = await supabase.from('tournaments').insert({
+      name: 'MFA Tournament ' + new Date().toLocaleDateString('en-IN'),
+      created_by: currentUser.id,
+      half_mins: state.halfMins,
+      status: 'active'
+    }).select().single();
+    if (res.error) throw res.error;
+    var tourId = res.data.id;
+    for (var t of state.teams) {
+      await supabase.from('tournament_teams').insert({ tournament_id: tourId, name: t.name, captain_name: t.captain, colour: t.name.split(' - ')[1] || '' });
+    }
+    return tourId;
+  } catch(e) { console.error('Save tournament error', e); return null; }
+}
+
+async function saveMatchResultToSupabase(fixture) {
+  if (!currentUser || !supabase) return;
+
+  var goals = (fixture.goals || []).filter(function(g){ return !g.isOwnGoal; });
+  if (goals.length === 0) return;
+
+  var resolvedCache = {}; // name(lowercased) -> uuid|null, avoids duplicate lookups
+
+  async function resolveProfileId(scorer) {
+    // 1) Direct mapping from registered selection.
+    if (state.playerProfiles && state.playerProfiles[scorer]) return state.playerProfiles[scorer];
+    // 2) Manual mode only: try display_name, then full_name.
+    if (state.playerMode !== 'manual') return null;
+    var key = scorer.toLowerCase();
+    if (Object.prototype.hasOwnProperty.call(resolvedCache, key)) return resolvedCache[key];
+    var found = null;
+    try {
+      var byDisplay = await supabase.from('profiles').select('id').eq('display_name', scorer).single();
+      if (byDisplay && byDisplay.data && byDisplay.data.id) {
+        found = byDisplay.data.id;
+      } else {
+        var byFull = await supabase.from('profiles').select('id').eq('full_name', scorer).single();
+        if (byFull && byFull.data && byFull.data.id) found = byFull.data.id;
+      }
+    } catch(e) { /* network/lookup failure: leave unattributed, do not crash */ }
+    resolvedCache[key] = found;
+    return found;
+  }
+
+  for (var i = 0; i < goals.length; i++) {
+    var scorer = goals[i].scorer;
+    if (!scorer) continue;
+    // Isolate each goal so one failure doesn't drop the others.
+    try {
+      var pid = await resolveProfileId(scorer);
+      if (pid) {
+        var res = await supabase.rpc('increment_goals', { player_id: pid });
+        if (res && res.error) console.error('increment_goals failed for', scorer, res.error);
+      }
+    } catch(e) {
+      console.error('Goal attribution failed for', scorer, e);
+    }
+  }
+}
 var state = {
   phase: 'setup',
   players: 0,
@@ -475,6 +822,8 @@ var state = {
   halfMins: 7,
   teams: [],
   allPlayers: [],
+  playerMode: 'manual',
+  playerProfiles: {},
   draftOrder: [],
   draftRound: 0,
   draftPickIndex: 0,
@@ -505,6 +854,17 @@ function loadState() {
 }
 
 function navigate(screen) {
+  if (screen === 'auth') {
+    document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+    document.getElementById('screen-auth').classList.add('active');
+    return;
+  }
+  if (screen === 'profile') {
+    document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+    document.getElementById('screen-profile').classList.add('active');
+    loadProfile();
+    return;
+  }
   if (screen === 'setup' && state.phase !== 'setup' && state.fixtures && state.fixtures.length > 0) {
     showNewTournamentConfirm(); return;
   }
@@ -516,21 +876,29 @@ function navigate(screen) {
   updateLiveBanner();
 }
 
-function init() {
-  var hasState = loadState();
-  if (hasState && state.phase !== 'setup') {
-    var rd = document.getElementById('resume-detail');
-    var total = state.fixtures.length;
-    var done = state.fixtures.filter(function(f){ return f.completed; }).length;
-    rd.innerHTML = state.teams.map(function(t){ return t.name; }).join(' &bull; ') + '<br>' + done + ' of ' + total + ' matches played';
-    document.getElementById('resume-section').style.display = 'block';
-    document.getElementById('fresh-start').style.display = 'none';
+async function init() {
+  var session = await supabase.auth.getSession();
+  if (session.data && session.data.session && session.data.session.user) {
+    currentUser = session.data.session.user;
+    var profile = await supabase.from('profiles').select('*').eq('id', currentUser.id).single();
+    if (profile.data) { currentUser.display_name = profile.data.display_name; currentUser.full_name = profile.data.full_name; }
+    var hasState = loadState();
+    if (hasState && state.phase !== 'setup') {
+      var rd = document.getElementById('resume-detail');
+      var total = state.fixtures.length;
+      var done = state.fixtures.filter(function(f){ return f.completed; }).length;
+      rd.innerHTML = state.teams.map(function(t){ return t.name; }).join(' &bull; ') + '<br>' + done + ' of ' + total + ' matches played';
+      document.getElementById('resume-section').style.display = 'block';
+      document.getElementById('fresh-start').style.display = 'none';
+    } else {
+      document.getElementById('resume-section').style.display = 'none';
+      document.getElementById('fresh-start').style.display = 'block';
+    }
     navigate('welcome');
-  } else {
-    document.getElementById('resume-section').style.display = 'none';
-    document.getElementById('fresh-start').style.display = 'block';
-    navigate('welcome');
+    return;
   }
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById('screen-auth').classList.add('active');
 }
 
 function resumeTournament() {
@@ -541,6 +909,9 @@ function resumeTournament() {
 
 function setupBackTo1() {
   document.getElementById('setup-step-2').style.display = 'none';
+  document.getElementById('setup-step-mode').style.display = 'none';
+  document.getElementById('setup-step-registered').style.display = 'none';
+  document.getElementById('setup-step-3').style.display = 'none';
   document.getElementById('setup-step-1').style.display = 'block';
   document.getElementById('inp-players').value = state.players || '';
   document.getElementById('inp-teams').value = state.numTeams || '';
@@ -553,6 +924,8 @@ function setupBackTo2() {
   for (var i = 0; i < state.numTeams; i++) {
     captains.push(state.teams[i] ? state.teams[i].captain : '');
   }
+  document.getElementById('setup-step-mode').style.display = 'none';
+  document.getElementById('setup-step-registered').style.display = 'none';
   document.getElementById('setup-step-3').style.display = 'none';
   document.getElementById('setup-step-2').style.display = 'block';
   for (var i = 0; i < state.numTeams; i++) {
@@ -562,16 +935,21 @@ function setupBackTo2() {
   document.getElementById('setup-scroll').scrollTop = 0;
 }
 
+function setupBackToMode() {
+  document.getElementById('setup-step-3').style.display = 'none';
+  document.getElementById('setup-step-registered').style.display = 'none';
+  document.getElementById('setup-step-mode').style.display = 'block';
+  document.getElementById('setup-scroll').scrollTop = 0;
+}
+
 function setupStep1Next() {
   var p = parseInt(document.getElementById('inp-players').value);
   var t = parseInt(document.getElementById('inp-teams').value);
   var h = parseInt(document.getElementById('inp-half').value);
-  if (!p || p < 6 || p > 50) { alert('Enter a valid number of players (6–50).'); return; }
   if (!t) { alert('Select number of teams.'); return; }
-  if (p < t) { alert('More teams than players — reduce teams or add players.'); return; }
-  state.players = p;
   state.numTeams = t;
   state.halfMins = h;
+  state.players = p || 0;
   state.teams = [];
   for (var i = 0; i < t; i++) state.teams.push({ name: '', captain: '', players: [] });
   var teamColours = ['Black', 'Red', 'Blue', 'Green', 'Yellow', 'White'];
@@ -600,6 +978,19 @@ function setupStep2Next() {
   var caps = state.teams.map(function(t){ return t.captain.toLowerCase(); });
   var unique = new Set(caps);
   if (unique.size !== caps.length) { alert('Each captain must have a unique name.'); return; }
+  document.getElementById('setup-step-2').style.display = 'none';
+  document.getElementById('setup-step-mode').style.display = 'block';
+  document.getElementById('setup-scroll').scrollTop = 0;
+}
+
+function chooseModeManual() {
+  state.playerMode = 'manual';
+  state.playerProfiles = {};
+  if (!state.players || state.players < state.numTeams + 1) {
+    var p = parseInt(prompt('How many total players (including captains)?'));
+    if (!p || p < state.numTeams + 1) { alert('Need at least ' + (state.numTeams + 1) + ' players for ' + state.numTeams + ' teams.'); return; }
+    state.players = p;
+  }
   var nonCaps = state.players - state.numTeams;
   var pf = document.getElementById('player-fields');
   pf.innerHTML = '';
@@ -610,7 +1001,7 @@ function setupStep2Next() {
     pf.appendChild(row);
   }
   for (var i = 0; i < nonCaps; i++) {
-    (function(idx, total) {
+    (function(idx) {
       var inp = document.getElementById('player-' + idx);
       inp.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
@@ -620,11 +1011,168 @@ function setupStep2Next() {
           else setupFinish();
         }
       });
-    })(i, nonCaps);
+    })(i);
   }
-  document.getElementById('setup-step-2').style.display = 'none';
+  document.getElementById('setup-step-mode').style.display = 'none';
   document.getElementById('setup-step-3').style.display = 'block';
   document.getElementById('setup-scroll').scrollTop = 0;
+}
+
+var _registeredPlayers = [];
+var _selectedPlayers = [];
+var _allProfiles = [];
+var _regLoadToken = 0;
+
+async function chooseModeRegistered() {
+  state.playerMode = 'registered';
+  state.playerProfiles = {};
+  _registeredPlayers = [];
+  _selectedPlayers = [];
+  _allProfiles = [];
+  var myToken = ++_regLoadToken;
+  document.getElementById('setup-step-mode').style.display = 'none';
+  var regStep = document.getElementById('setup-step-registered');
+  regStep.innerHTML = '<div style="padding:32px 16px;text-align:center;color:var(--text2)">⏳ Loading registered players...</div>';
+  regStep.style.display = 'block';
+  document.getElementById('setup-scroll').scrollTop = 0;
+
+  var fetched = [];
+  var cached = null;
+  try { var c = localStorage.getItem('mfa_profiles_cache'); if (c) cached = JSON.parse(c); } catch(e) {}
+  try {
+    var res = await supabase.from('profiles').select('id,full_name,display_name');
+    if (res && res.data && res.data.length > 0) {
+      fetched = res.data;
+      try { localStorage.setItem('mfa_profiles_cache', JSON.stringify(res.data)); } catch(e) {}
+    } else if (cached) {
+      fetched = cached;
+    }
+  } catch(e) {
+    if (cached) fetched = cached;
+  }
+
+  // Superseded by a newer load, or the user navigated away (Back) — don't clobber the screen.
+  if (myToken !== _regLoadToken) return;
+  if (document.getElementById('setup-step-registered').style.display === 'none') return;
+
+  _allProfiles = fetched;
+  var capNames = state.teams.map(function(t){ return t.captain.toLowerCase(); });
+  _registeredPlayers = fetched.filter(function(p){
+    var dn = (p.display_name || '').toLowerCase();
+    var fn = (p.full_name || '').toLowerCase();
+    return capNames.indexOf(dn) === -1 && capNames.indexOf(fn) === -1;
+  });
+  renderPlayerSelectionScreen();
+}
+
+function renderPlayerSelectionScreen() {
+  var regStep = document.getElementById('setup-step-registered');
+  regStep.innerHTML = '';
+  var countBar = document.createElement('div');
+  countBar.className = 'select-count-bar';
+  countBar.innerHTML = '<span class="select-count-text" id="sel-count">0 players selected</span><span style="font-size:12px;color:var(--text2)">Tap to select</span>';
+  regStep.appendChild(countBar);
+  var grid = document.createElement('div');
+  grid.className = 'player-select-grid';
+  grid.id = 'reg-player-grid';
+  if (_registeredPlayers.length === 0) {
+    grid.innerHTML = '<div style="text-align:center;color:var(--text2);padding:20px;font-size:14px">No registered players found.<br>Use manual entry or ask players to sign up first.</div>';
+  } else {
+    _registeredPlayers.forEach(function(p) {
+      var displayName = p.full_name || p.display_name || 'Unknown';
+      var card = document.createElement('div');
+      card.className = 'player-select-card';
+      card.id = 'pscard-' + p.id;
+      card.innerHTML = '<div class="ps-check"></div><div class="ps-name">' + escHtml(displayName) + '</div><div class="ps-badge">MFA</div>';
+      card.onclick = function() { togglePlayerSelect(p, card); };
+      grid.appendChild(card);
+    });
+  }
+  regStep.appendChild(grid);
+  var manualRow = document.createElement('div');
+  manualRow.className = 'manual-add-row';
+  manualRow.innerHTML = '<input type="text" id="manual-add-inp" placeholder="Add unregistered player..." maxlength="32"><button class="btn-add-manual" onclick="addManualToSelection()">+ Add</button>';
+  regStep.appendChild(manualRow);
+  var stickyBtn = document.createElement('div');
+  stickyBtn.className = 'sticky-btn';
+  stickyBtn.style.cssText = 'display:flex;flex-direction:column;gap:10px';
+  stickyBtn.innerHTML = '<button class="btn btn-primary" onclick="confirmRegisteredSelection()">Confirm Players &amp; Start Draft</button><button class="btn btn-secondary btn-sm" onclick="setupBackToMode()">← Back</button>';
+  regStep.appendChild(stickyBtn);
+  updateSelectionCount();
+}
+
+function togglePlayerSelect(profile, card) {
+  var idx = _selectedPlayers.findIndex(function(p){ return p.id === profile.id; });
+  if (idx === -1) {
+    _selectedPlayers.push(profile);
+    card.classList.add('selected');
+    card.querySelector('.ps-check').textContent = '✓';
+  } else {
+    _selectedPlayers.splice(idx, 1);
+    card.classList.remove('selected');
+    card.querySelector('.ps-check').textContent = '';
+  }
+  updateSelectionCount();
+}
+
+function addManualToSelection() {
+  var inp = document.getElementById('manual-add-inp');
+  var name = inp.value.trim();
+  if (!name) return;
+  var capNames = state.teams.map(function(t){ return t.captain.toLowerCase(); });
+  if (capNames.indexOf(name.toLowerCase()) !== -1) { alert('"' + name + '" is already a captain.'); return; }
+  var already = _selectedPlayers.some(function(p){ return (p.full_name || p.display_name || '').toLowerCase() === name.toLowerCase(); });
+  if (already) { alert('Already added.'); return; }
+  var manualProfile = { id: null, full_name: name, display_name: name.split(' ')[0] };
+  _selectedPlayers.push(manualProfile);
+  var grid = document.getElementById('reg-player-grid');
+  var card = document.createElement('div');
+  card.className = 'player-select-card selected';
+  card.innerHTML = '<div class="ps-check">✓</div><div class="ps-name">' + escHtml(name) + '</div><div style="font-size:10px;color:var(--text2)">Manual</div>';
+  card.onclick = function() {
+    var i = _selectedPlayers.findIndex(function(p){ return p.full_name === name && p.id === null; });
+    if (i !== -1) { _selectedPlayers.splice(i, 1); card.remove(); updateSelectionCount(); }
+  };
+  grid.appendChild(card);
+  inp.value = '';
+  updateSelectionCount();
+}
+
+function updateSelectionCount() {
+  var el = document.getElementById('sel-count');
+  if (el) el.textContent = _selectedPlayers.length + ' player' + (_selectedPlayers.length !== 1 ? 's' : '') + ' selected';
+}
+
+function confirmRegisteredSelection() {
+  if (_selectedPlayers.length === 0) { alert('Select at least one player.'); return; }
+  var names = [];
+  var profiles = {};
+  _selectedPlayers.forEach(function(p) {
+    var displayName = p.full_name || p.display_name || 'Player';
+    names.push(displayName);
+    if (p.id) profiles[displayName] = p.id;
+  });
+  var seen = {};
+  for (var i = 0; i < names.length; i++) {
+    var key = names[i].toLowerCase();
+    if (seen[key]) { alert('Two selected players have the same name ("' + names[i] + '"). Player names must be unique for the draft.'); return; }
+    seen[key] = true;
+  }
+  state.allPlayers = names;
+  state.playerProfiles = profiles;
+  state.players = state.allPlayers.length + state.numTeams;
+  // Link captains from the UNFILTERED profile list (_registeredPlayers has captains removed).
+  state.teams.forEach(function(t) {
+    var match = _allProfiles.find(function(rp){
+      return (rp.display_name || '').toLowerCase() === t.captain.toLowerCase() ||
+             (rp.full_name || '').toLowerCase() === t.captain.toLowerCase();
+    });
+    if (match && match.id) state.playerProfiles[t.captain] = match.id;
+  });
+  state.phase = 'draft';
+  saveState();
+  navigate('draft');
+  renderDraft();
 }
 
 function setupFinish() {
@@ -644,24 +1192,12 @@ function setupFinish() {
     seen.add(n);
   }
   state.allPlayers = players;
+  state.playerMode = 'manual';
+  state.playerProfiles = {};
   state.phase = 'draft';
-  var order = [];
-  for (var i = 0; i < state.numTeams; i++) order.push(i);
-  for (var i = order.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i+1)); var tmp = order[i]; order[i] = order[j]; order[j] = tmp; }
-  state.draftOrder = order;
-  state.draftRound = 0;
-  state.draftPickIndex = 0;
   saveState();
   navigate('draft');
   renderDraft();
-}
-
-function getPickTeamIdx() {
-  var order = state.draftOrder;
-  var idx = state.draftPickIndex % order.length;
-  var round = Math.floor(state.draftPickIndex / order.length);
-  if (round % 2 === 1) idx = order.length - 1 - (state.draftPickIndex % order.length);
-  return order[round % 2 === 0 ? state.draftPickIndex % order.length : order.length - 1 - (state.draftPickIndex % order.length)];
 }
 
 function getTeamLimit(teamIdx) {
@@ -683,50 +1219,58 @@ function isTeamFull(teamIdx) {
 function renderDraft() {
   var pool = document.getElementById('player-pool');
   pool.innerHTML = '';
-  var allPicked = state.allPlayers.every(function(p){ return state.teams.some(function(t){ return t.players.indexOf(p) !== -1; }); });
+  var unassigned = state.allPlayers.filter(function(p) {
+    return !state.teams.some(function(t){ return t.players.indexOf(p) !== -1; });
+  });
+  document.getElementById('draft-pool-count').textContent = unassigned.length;
+  var allPicked = unassigned.length === 0;
   if (allPicked) {
     document.getElementById('draft-complete-banner').style.display = 'block';
     document.getElementById('draft-pick-label').textContent = 'Draft complete';
-    document.getElementById('draft-pick-team').textContent = '';
-    document.getElementById('draft-pick-round').textContent = '';
     document.getElementById('draft-confirm-wrap').style.display = 'block';
-    renderRosters();
-    checkUnevenTeams();
-    return;
+  } else {
+    document.getElementById('draft-complete-banner').style.display = 'none';
+    document.getElementById('draft-pick-label').textContent = 'Tap a player to assign them to a team';
+    document.getElementById('draft-confirm-wrap').style.display = 'none';
   }
-  var teamIdx = getPickTeamIdx();
-  var skipCount = 0;
-  while (isTeamFull(teamIdx) && skipCount < state.numTeams) {
-    state.draftPickIndex++;
-    teamIdx = getPickTeamIdx();
-    skipCount++;
-  }
-  var team = state.teams[teamIdx];
-  var round = Math.floor(state.draftPickIndex / state.numTeams) + 1;
-  var limit = getTeamLimit(teamIdx);
-  var current = state.teams[teamIdx].players.length - 1;
-  var slotsLeft = limit - current;
-  document.getElementById('draft-pick-label').textContent = 'Pick for';
-  document.getElementById('draft-pick-team').textContent = team.name + ' — ' + team.captain;
-  document.getElementById('draft-pick-round').textContent = 'Round ' + round + (round % 2 === 0 ? ' (reversed order)' : '') + ' · ' + slotsLeft + ' slot' + (slotsLeft !== 1 ? 's' : '') + ' left';
-  state.allPlayers.forEach(function(p) {
-    var isPicked = state.teams.some(function(t){ return t.players.indexOf(p) !== -1; });
+  unassigned.forEach(function(p) {
     var card = document.createElement('div');
-    card.className = 'player-card ' + (isPicked ? 'picked' : 'available');
+    card.className = 'player-card available';
     card.textContent = p;
-    if (!isPicked) {
-      card.onclick = function() { pickPlayer(p, teamIdx); };
-    }
+    card.onclick = function() { openTeamPicker(p); };
     pool.appendChild(card);
   });
   renderRosters();
   checkUnevenTeams();
 }
 
-function pickPlayer(playerName, teamIdx) {
+function openTeamPicker(playerName) {
+  document.getElementById('goal-sheet-title').textContent = 'Assign to team';
+  document.getElementById('goal-sheet-sub').textContent = playerName;
+  var grid = document.getElementById('goal-player-grid');
+  grid.innerHTML = '';
+  state.teams.forEach(function(t, tIdx) {
+    var full = isTeamFull(tIdx);
+    var limit = getTeamLimit(tIdx);
+    var current = t.players.length - 1;
+    var btn = document.createElement('button');
+    btn.className = 'goal-player-btn' + (full ? ' og' : '');
+    btn.innerHTML = escHtml(t.name) + '<br><span style="font-size:10px;opacity:.7">' + current + ' / ' + limit + (full ? ' · Full' : '') + '</span>';
+    if (full) {
+      btn.disabled = true;
+      btn.style.opacity = '.35';
+      btn.style.cursor = 'not-allowed';
+    } else {
+      btn.onclick = function() { assignPlayerToTeam(playerName, tIdx); closeGoalSheet(false); };
+    }
+    grid.appendChild(btn);
+  });
+  document.getElementById('goal-overlay').classList.add('show');
+}
+
+function assignPlayerToTeam(playerName, teamIdx) {
   if (isTeamFull(teamIdx)) return;
   state.teams[teamIdx].players.push(playerName);
-  state.draftPickIndex++;
   saveState();
   renderDraft();
 }
@@ -776,30 +1320,8 @@ function removePlayerFromTeam(playerName, teamIdx) {
   var idx = team.players.indexOf(playerName);
   if (idx === -1) return;
   team.players.splice(idx, 1);
-  if (state.draftPickIndex > 0) state.draftPickIndex--;
   saveState();
   renderDraft();
-}
-
-function renderRosters() {
-  var panel = document.getElementById('rosters-panel');
-  panel.innerHTML = '';
-  var grid = document.createElement('div');
-  grid.className = 'roster-grid';
-  state.teams.forEach(function(t, tIdx) {
-    var item = document.createElement('div');
-    item.className = 'roster-item';
-    var playersHtml = t.players.map(function(p) {
-      var isCaptain = p === t.captain;
-      if (isCaptain) {
-        return '<div class="ri-player-row"><span class="ri-cap-badge">C</span><span>' + escHtml(p) + '</span></div>';
-      }
-      return '<div class="ri-player-row"><button class="ri-remove" onclick="removePlayerFromTeam(\'' + escHtml(p).replace(/'/g, "\\'") + '\',' + tIdx + ')" aria-label="Remove ' + escHtml(p) + '">✕</button><span>' + escHtml(p) + '</span></div>';
-    }).join('');
-    item.innerHTML = '<div class="ri-name">' + escHtml(t.name) + '</div><div class="ri-count">' + t.players.length + ' player' + (t.players.length !== 1 ? 's' : '') + '</div><div class="ri-players">' + playersHtml + '</div>';
-    grid.appendChild(item);
-  });
-  panel.appendChild(grid);
 }
 
 function confirmDraft() {
@@ -1179,6 +1701,7 @@ function confirmScore() {
   state.halfAutoAdvanced = false;
   state.fullTimeAutoReached = false;
   saveState();
+  saveMatchResultToSupabase(f);
   navigate('fixtures');
 }
 
@@ -1265,12 +1788,14 @@ function hideResetConfirm() {
 function doReset() {
   if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
   try { localStorage.removeItem('mfc_state'); } catch(e) {}
-  state = { phase:'setup', players:0, numTeams:0, halfMins:7, teams:[], allPlayers:[], draftOrder:[], draftRound:0, draftPickIndex:0, fixtures:[], currentMatchIdx:null, matchScore:{a:0,b:0}, matchGoals:[], matchHalf:1, matchTimerRunning:false, matchTimerSeconds:0, matchCompleted:false, halfAutoAdvanced:false, fullTimeAutoReached:false };
+  state = { phase:'setup', players:0, numTeams:0, halfMins:7, teams:[], allPlayers:[], playerMode:'manual', playerProfiles:{}, draftOrder:[], draftRound:0, draftPickIndex:0, fixtures:[], currentMatchIdx:null, matchScore:{a:0,b:0}, matchGoals:[], matchHalf:1, matchTimerRunning:false, matchTimerSeconds:0, matchCompleted:false, halfAutoAdvanced:false, fullTimeAutoReached:false };
   hideResetConfirm();
   hideNewTournamentConfirm();
   document.getElementById('setup-step-1').style.display = 'block';
   document.getElementById('setup-step-2').style.display = 'none';
   document.getElementById('setup-step-3').style.display = 'none';
+  document.getElementById('setup-step-mode').style.display = 'none';
+  document.getElementById('setup-step-registered').style.display = 'none';
   document.getElementById('inp-players').value = '';
   document.getElementById('inp-teams').value = '';
   document.getElementById('inp-half').value = '7';
@@ -1337,7 +1862,7 @@ function escHtml(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-init();
+window.addEventListener('load', function() { init(); });
 </script>
 </body>
 </html>
